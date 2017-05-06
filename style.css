@@ -1,0 +1,20 @@
+body {
+    font-size: 2rem;
+    font-family: Arial;
+    color: #333;
+}
+
+.b_fun {
+    height: 400px;
+    margin-top: 400px;
+    text-align: center;
+}
+
+.b_fun__elm {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    height: 0;
+    background: #222;
+    transition: all .4s;
+}
