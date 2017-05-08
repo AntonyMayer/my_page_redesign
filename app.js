@@ -22,24 +22,45 @@ class Fun {
         }
     }
     play() {
-       setInterval(self.iterate, 400);
+        // setInterval(self.iterate, 400);
+        self.iterate();
     }
     iterate() {
-        for (let i = 0, maxI = self.elms.length; i < maxI; i+= 30) {
-            self.setRandomHeight(self.elms[i]);
-            for (let z = 0; z < 30; z++) {
-                self.elms[i+z].style.height = `${self.random*0.9}%`;
-                self.elms[i+z].style.top = `${-self.random*0.45}%`;
-            }
+        let i = 0;
+
+        while (i < self.elms.length) {
+            let random = Math.round(Math.random() * 10 + 15),
+                mid = Math.round(random / 2);
+            if (i + mid >= self.elms.length) mid = Math.round((self.elms.length - i)/2);
+            self.setRandomHeight(self.elms[i + mid]);
+            self.syncHeight(i, random, mid);
+            i += random;
         }
     }
     setRandomHeight(elm) {
-        self.random = Math.random() * 100;
+        self.random = Math.round(Math.random() * 100);
         elm.style.height = `${self.random}%`;
         elm.style.top = `${-self.random/2}%`;
+    }
+    syncHeight(i, random, mid) {
+        console.log('=====')
+        console.log(i)
+        console.log(random)
+        console.log(mid)
+        for (let z = 0; z < random; z++) {
+            if (i + z < self.elms.length) {
+                if (z < mid) {
+                    self.elms[i + z].style.height = `${self.random*((z + 1)/mid)}%`;
+                    self.elms[i + z].style.top = `${-self.random/2*((z + 1)/mid)}%`;
+                } else {
+                    self.elms[i + z].style.height = `${self.random}%`;
+                    self.elms[i + z].style.top = `${-self.random/2}%`;
+                }
+            }
+        }
     }
 }
 
 var fun = new Fun();
 
-fun.init(window.innerWidth/10);
+fun.init(window.innerWidth / 10);
