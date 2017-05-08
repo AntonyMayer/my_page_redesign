@@ -50,10 +50,10 @@ class Fun {
         for (let z = 0; z < random; z++) {
             if (i + z < self.elms.length) {
                 if (z < mid) {
-                    self.elms[i + z].style.height = `${self.random*((z + 1)/mid)}%`;
+                    self.elms[i + z].style.height = `${self.random*((z + 1)/mid)}%`; //TODO: use Math.pow(z, 2)
                     self.elms[i + z].style.top = `${-self.random/2*((z + 1)/mid)}%`;
                 } else {
-                    self.elms[i + z].style.height = `${self.random}%`;
+                    self.elms[i + z].style.height = `${self.random*(())}%`;
                     self.elms[i + z].style.top = `${-self.random/2}%`;
                 }
             }
